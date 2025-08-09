@@ -1,25 +1,21 @@
 {
   "pairs": [
     {
-      "item1": "Cat",
-      "item2": "Meow"
+      "item1": "Quick news brief",
+      "item2": "Perplexity"
     },
     {
-      "item1": "Dog",
-      "item2": "Bark"
+      "item1": "Deep Research",
+      "item2": "Gemini 2.5"
     },
     {
-      "item1": "Sun",
-      "item2": "Hot"
+      "item1": "Coding",
+      "item2": "Claude Opus 4"
     },
     {
-      "item1": "Rain",
-      "item2": "Wet"
+      "item1": "Creative brainstorm",
+      "item2": "GPT 4o"
     },
-    {
-      "item1": "Fire",
-      "item2": "Burn"
-    }
   ],
   "lastUpdated": "2025-01-09T00:00:00Z",
   "version": "1.0",
