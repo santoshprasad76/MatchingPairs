@@ -423,11 +423,11 @@ class MatchingGame {
 
     setDefaultPairs() {
         this.pairs = [
-            { item1: "Cat", item2: "Meow" },
-            { item1: "Dog", item2: "Bark" },
-            { item1: "Sun", item2: "Hot" },
-            { item1: "Rain", item2: "Wet" },
-            { item1: "Fire", item2: "Burn" }
+            { item1: "Quick news brief", item2: "Perplexity" },
+            { item1: "Deep Research", item2: "Gemini 2.5" },
+            { item1: "Coding", item2: "Claude Opus 4" },
+            { item1: "Creative brainstorn", item2: "GPT 4o" },
+            
         ];
         console.log('Set default pairs:', this.pairs.length, 'pairs');
         this.savePairs();
