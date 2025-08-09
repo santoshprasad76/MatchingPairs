@@ -1,0 +1,579 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 900px;
+    width: 90%;
+    background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+    border-radius: 25px;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    position: relative;
+    border: 1px solid #333;
+}
+
+h1 {
+    text-align: center;
+    background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 30px;
+    font-size: 2.8em;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(255, 215, 0, 0.3);
+}
+
+/* Admin Panel Styles */
+.admin-panel {
+    background: linear-gradient(145deg, #333333, #2a2a2a);
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    border: 1px solid #444;
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.admin-panel h2 {
+    color: #ffd700;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.pair-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.pair-input input {
+    flex: 1;
+    padding: 12px 16px;
+    background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+    border: 2px solid #444;
+    border-radius: 12px;
+    font-size: 16px;
+    color: #ffd700;
+    transition: all 0.3s ease;
+}
+
+.pair-input input:focus {
+    outline: none;
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.pair-input input::placeholder {
+    color: #888;
+}
+
+/* Button Styles */
+.pair-input button,
+#start-btn,
+.reset-btn,
+.clear-btn,
+.check-btn,
+.remove-btn {
+    width: 150px;
+    height: 50px;
+    padding: 14px 24px;
+    background: linear-gradient(145deg, #ffd700, #ffed4e);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pair-input button:hover,
+#start-btn:hover,
+.reset-btn:hover,
+.clear-btn:hover,
+.check-btn:hover,
+.remove-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(145deg, #ffed4e, #ffd700);
+}
+
+.pair-input button:active,
+#start-btn:active,
+.reset-btn:active,
+.clear-btn:active,
+.check-btn:active,
+.remove-btn:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.clear-btn,
+.remove-btn {
+    background: linear-gradient(145deg, #ff6b6b, #ff5252);
+    color: white;
+}
+
+.clear-btn:hover,
+.remove-btn:hover {
+    background: linear-gradient(145deg, #ff5252, #ff6b6b);
+}
+
+.check-btn {
+    background: linear-gradient(145deg, #4caf50, #66bb6a);
+    color: white;
+}
+
+.check-btn:hover {
+    background: linear-gradient(145deg, #66bb6a, #4caf50);
+}
+
+.admin-buttons,
+.game-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+#start-btn:disabled {
+    background: linear-gradient(145deg, #555, #444);
+    color: #888;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#start-btn:disabled:hover {
+    transform: none;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.pairs-list {
+    margin: 15px 0;
+}
+
+.pair-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+    padding: 15px;
+    margin: 8px 0;
+    border-radius: 12px;
+    border: 1px solid #444;
+    color: #ffd700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Remove button inherits from main button styles above */
+
+/* Game Area Styles */
+.game-area {
+    text-align: center;
+    background: 
+        /* Sky gradient */
+        linear-gradient(to bottom, 
+            #87CEEB 0%,     /* Sky blue */
+            #98D8E8 30%,    /* Light blue */
+            #F0E68C 70%,    /* Sandy yellow */
+            #DEB887 85%,    /* Beach sand */
+            #D2B48C 100%    /* Darker sand */
+        );
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Beach decorative elements */
+.game-area::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: 
+        radial-gradient(ellipse at center bottom, 
+            rgba(255, 255, 255, 0.3) 0%, 
+            transparent 70%
+        ),
+        linear-gradient(45deg, 
+            transparent 40%, 
+            rgba(255, 255, 255, 0.1) 50%, 
+            transparent 60%
+        );
+    pointer-events: none;
+}
+
+/* Sun decoration removed */
+
+.game-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.game-board {
+    display: flex;
+    gap: 30px;
+    margin: 20px 0;
+    min-height: 300px;
+    justify-content: center;
+}
+
+.game-column {
+    flex: 1;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.column-header {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    margin-bottom: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.game-item {
+    background: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 18px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #2c3e50;
+    min-height: 85px;
+    word-wrap: break-word;
+    text-align: center;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.draggable-item {
+    cursor: grab;
+    border-left: 6px solid #ff6b35;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.draggable-item:active {
+    cursor: grabbing;
+}
+
+.draggable-item.dragging {
+    opacity: 0.8;
+    transform: rotate(3deg) scale(1.05);
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 107, 53, 0.5);
+}
+
+.fixed-item {
+    cursor: default;
+    border-left: 6px solid #20b2aa;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.game-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.game-item.selected {
+    border-color: #ff6b35;
+    background: rgba(255, 107, 53, 0.3);
+    transform: scale(1.05);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 107, 53, 0.5);
+}
+
+.game-item.matched {
+    border-color: #20b2aa;
+    background: rgba(32, 178, 170, 0.3);
+    cursor: default;
+    animation: matchPulse 0.6s ease;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(32, 178, 170, 0.4);
+}
+
+.game-item.wrong {
+    border-color: #e74c3c;
+    background: rgba(231, 76, 60, 0.3);
+    animation: shake 0.5s ease;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(231, 76, 60, 0.4);
+}
+
+@keyframes matchPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Victory Animation */
+.victory-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(45, 45, 45, 0.95));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    animation: fadeIn 0.5s ease;
+    border: 1px solid #444;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.cartoon-character {
+    font-size: 8em;
+    animation: bounce 1s infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+}
+
+.victory-animation h2 {
+    background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 3.5em;
+    margin: 20px 0;
+    animation: pulse 1s infinite;
+    text-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+    font-weight: bold;
+}
+
+.victory-animation p {
+    font-size: 1.8em;
+    color: #ffd700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/* GitHub Footer */
+.github-footer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid #444;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.github-footer p {
+    margin: 0;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.github-footer a {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.github-footer a:hover {
+    color: #ffed4e;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* Responsive button adjustments */
+@media (max-width: 600px) {
+    .pair-input button,
+    #start-btn,
+    .reset-btn,
+    .clear-btn,
+    .check-btn,
+    .remove-btn {
+        width: 120px;
+        height: 45px;
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .game-board {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .game-column {
+        max-width: none;
+    }
+
+    .game-item {
+        padding: 15px;
+        font-size: 14px;
+        min-height: 60px;
+    }
+
+    .pair-input {
+        flex-direction: column;
+    }
+
+    .column-header {
+        height: 50px;
+        font-size: 16px;
+        padding: 12px;
+    }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Pairs Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Matching Pairs Game</h1>
+
+        <!-- Admin Setup Panel -->
+        <div id="admin-panel" class="admin-panel">
+            <h2>Admin Setup</h2>
+            <div class="pair-input">
+                <input type="text" id="item1" placeholder="Item 1">
+                <input type="text" id="item2" placeholder="Item 2">
+                <button onclick="addPair()">Add Pair</button>
+            </div>
+            <div id="pairs-list"></div>
+            <div class="admin-buttons">
+                <button onclick="startGame()" id="start-btn" disabled>Start Game</button>
+                <button onclick="clearAllPairs()" class="clear-btn">Clear All</button>
+            </div>
+        </div>
+
+        <!-- Game Area -->
+        <div id="game-area" class="game-area hidden">
+            <div class="game-stats">
+                <span>Matches: <span id="matches">0</span></span>
+                <span>Attempts: <span id="attempts">0</span></span>
+            </div>
+            <div id="game-board" class="game-board"></div>
+            <div class="game-buttons">
+                <button onclick="checkAnswers()" class="check-btn">Check Answers</button>
+                <button onclick="resetGame()" class="reset-btn">New Game</button>
+            </div>
+        </div>
+
+        <!-- Victory Animation -->
+        <div id="victory-animation" class="victory-animation hidden">
+            <div class="cartoon-character">🎉</div>
+            <h2>HURRAY!</h2>
+            <p>You matched all pairs!</p>
+        </div>
+    </div>
+
+    <!-- Footer with GitHub credit -->
+    <footer class="github-footer">
+        <p>Created by <a href="https://github.com/santoshprasad76" target="_blank">@santoshprasad76</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
