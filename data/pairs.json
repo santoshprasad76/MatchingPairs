@@ -1,0 +1,29 @@
+{
+  "pairs": [
+    {
+      "item1": "Cat",
+      "item2": "Meow"
+    },
+    {
+      "item1": "Dog",
+      "item2": "Bark"
+    },
+    {
+      "item1": "Sun",
+      "item2": "Hot"
+    },
+    {
+      "item1": "Rain",
+      "item2": "Wet"
+    },
+    {
+      "item1": "Fire",
+      "item2": "Burn"
+    }
+  ],
+  "lastUpdated": "2025-01-09T00:00:00Z",
+  "version": "1.0",
+  "totalPairs": 5,
+  "projectName": "Matching Pairs Game",
+  "author": "santoshprasad76"
+}

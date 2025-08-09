@@ -158,12 +158,45 @@ h1 {
 }
 
 .admin-buttons,
-.game-buttons {
+.game-buttons,
+.file-operations {
     display: flex;
     gap: 15px;
     justify-content: center;
     margin-top: 20px;
     flex-wrap: wrap;
+}
+
+.export-btn,
+.import-btn {
+    width: 150px;
+    height: 50px;
+    padding: 14px 24px;
+    background: linear-gradient(145deg, #17a2b8, #138496);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.export-btn:hover,
+.import-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(145deg, #138496, #17a2b8);
 }
 
 #start-btn:disabled {
@@ -525,6 +558,82 @@ h1 {
 .github-footer a:hover {
     color: #ffed4e;
     text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* Save Notification */
+.save-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+    border: 2px solid #ffd700;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(255, 215, 0, 0.3);
+    z-index: 1000;
+    display: none;
+    animation: slideIn 0.3s ease;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.download-btn-small {
+    background: linear-gradient(145deg, #ffd700, #ffed4e);
+    color: #1a1a1a;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.download-btn-small:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: #ff5252;
+    transform: scale(1.1);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 /* Responsive button adjustments */

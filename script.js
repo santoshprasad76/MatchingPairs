@@ -298,26 +298,180 @@ class MatchingGame {
     // Storage methods
     savePairs() {
         try {
+            // Save to localStorage
             localStorage.setItem('matchingGamePairs', JSON.stringify(this.pairs));
+            
+            // Auto-generate updated JSON file for download
+            this.autoSaveToFile();
+            
+            console.log('Pairs saved successfully:', this.pairs.length, 'pairs');
         } catch (error) {
-            console.warn('Could not save pairs to localStorage:', error);
+            console.warn('Could not save pairs:', error);
         }
     }
 
-    loadPairs() {
+    autoSaveToFile() {
+        // Create updated JSON structure
+        const jsonData = {
+            pairs: this.pairs,
+            lastUpdated: new Date().toISOString(),
+            version: "1.0",
+            totalPairs: this.pairs.length,
+            projectName: "Matching Pairs Game",
+            author: "santoshprasad76"
+        };
+
+        // Store the JSON data for potential download
+        this.currentJsonData = JSON.stringify(jsonData, null, 2);
+        
+        // Show notification that data is ready for download
+        this.showSaveNotification();
+    }
+
+    showSaveNotification() {
+        // Create or update notification
+        let notification = document.getElementById('save-notification');
+        if (!notification) {
+            notification = document.createElement('div');
+            notification.id = 'save-notification';
+            notification.className = 'save-notification';
+            document.body.appendChild(notification);
+        }
+
+        notification.innerHTML = `
+            <div class="notification-content">
+                <span>📁 Data updated! ${this.pairs.length} pairs ready</span>
+                <button onclick="game.downloadUpdatedFile()" class="download-btn-small">Download JSON</button>
+                <button onclick="game.hideSaveNotification()" class="close-btn">×</button>
+            </div>
+        `;
+        
+        notification.style.display = 'block';
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            if (notification) {
+                notification.style.display = 'none';
+            }
+        }, 5000);
+    }
+
+    downloadUpdatedFile() {
+        if (this.currentJsonData) {
+            const dataBlob = new Blob([this.currentJsonData], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'pairs.json';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            this.hideSaveNotification();
+            console.log('Updated pairs.json downloaded');
+        }
+    }
+
+    hideSaveNotification() {
+        const notification = document.getElementById('save-notification');
+        if (notification) {
+            notification.style.display = 'none';
+        }
+    }
+
+    async loadPairs() {
         try {
+            // First try to load from localStorage
             const savedPairs = localStorage.getItem('matchingGamePairs');
             if (savedPairs) {
                 this.pairs = JSON.parse(savedPairs);
-                // Update UI after loading
-                setTimeout(() => {
-                    this.updatePairsList();
-                    this.updateStartButton();
-                }, 0);
+                console.log('Loaded pairs from localStorage:', this.pairs.length, 'pairs');
+            } else {
+                // If no localStorage data, try to load from JSON file
+                await this.loadFromFile();
+            }
+            
+            // Update UI after loading
+            setTimeout(() => {
+                this.updatePairsList();
+                this.updateStartButton();
+            }, 0);
+        } catch (error) {
+            console.warn('Could not load pairs:', error);
+            this.pairs = [];
+        }
+    }
+
+    async loadFromFile() {
+        try {
+            const response = await fetch('data/pairs.json');
+            if (response.ok) {
+                const data = await response.json();
+                this.pairs = data.pairs || [];
+                console.log('Loaded pairs from file:', this.pairs.length, 'pairs');
+                // Save to localStorage for future use
+                this.savePairs();
             }
         } catch (error) {
-            console.warn('Could not load pairs from localStorage:', error);
-            this.pairs = [];
+            console.warn('Could not load pairs from file:', error);
+            // Set some default pairs if file loading fails
+            this.setDefaultPairs();
+        }
+    }
+
+    setDefaultPairs() {
+        this.pairs = [
+            { item1: "Cat", item2: "Meow" },
+            { item1: "Dog", item2: "Bark" },
+            { item1: "Sun", item2: "Hot" },
+            { item1: "Rain", item2: "Wet" },
+            { item1: "Fire", item2: "Burn" }
+        ];
+        console.log('Set default pairs:', this.pairs.length, 'pairs');
+        this.savePairs();
+    }
+
+    exportPairs() {
+        const dataStr = JSON.stringify({
+            pairs: this.pairs,
+            lastUpdated: new Date().toISOString(),
+            version: "1.0"
+        }, null, 2);
+        
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(dataBlob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'matching-pairs-backup.json';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        
+        console.log('Pairs exported successfully');
+    }
+
+    async importPairs(file) {
+        try {
+            const text = await file.text();
+            const data = JSON.parse(text);
+            
+            if (data.pairs && Array.isArray(data.pairs)) {
+                this.pairs = data.pairs;
+                this.savePairs();
+                this.updatePairsList();
+                this.updateStartButton();
+                console.log('Imported pairs successfully:', this.pairs.length, 'pairs');
+                alert(`Successfully imported ${this.pairs.length} pairs!`);
+            } else {
+                throw new Error('Invalid file format');
+            }
+        } catch (error) {
+            console.error('Import failed:', error);
+            alert('Failed to import pairs. Please check the file format.');
         }
     }
 
@@ -354,6 +508,17 @@ function clearAllPairs() {
 
 function checkAnswers() {
     game.checkAnswers();
+}
+
+function exportPairs() {
+    game.exportPairs();
+}
+
+function handleImport(event) {
+    const file = event.target.files[0];
+    if (file) {
+        game.importPairs(file);
+    }
 }
 
 // Allow Enter key to add pairs

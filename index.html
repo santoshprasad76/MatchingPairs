@@ -25,6 +25,11 @@
                 <button onclick="startGame()" id="start-btn" disabled>Start Game</button>
                 <button onclick="clearAllPairs()" class="clear-btn">Clear All</button>
             </div>
+            <div class="file-operations">
+                <button onclick="exportPairs()" class="export-btn">Export Pairs</button>
+                <input type="file" id="import-file" accept=".json" style="display: none;" onchange="handleImport(event)">
+                <button onclick="document.getElementById('import-file').click()" class="import-btn">Import Pairs</button>
+            </div>
         </div>
 
         <!-- Game Area -->
